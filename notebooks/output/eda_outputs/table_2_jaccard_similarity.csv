@@ -1,0 +1,2 @@
+kew_plants,nmpdb_plants,intersection,union,jaccard_index,note
+33,0,0,33,0.0,No external Kew plant list was found; the integrated plant list was used as a proxy.
