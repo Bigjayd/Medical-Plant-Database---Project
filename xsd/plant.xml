@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<MedicinalPlants>
+
+    <Plant id="PL001">
+        <Name>Allium sativum</Name>
+        <Family>Amaryllidaceae</Family>
+        <Origin>Nigeria</Origin>
+
+        <Phytochemicals>
+            <Phytochemical ref="PC001"/>
+            <Phytochemical ref="PC002"/>
+        </Phytochemicals>
+    </Plant>
+
+    <Plant id="PL002">
+        <Name>Zingiber officinale</Name>
+        <Family>Zingiberaceae</Family>
+        <Origin>India</Origin>
+
+        <Phytochemicals>
+            <Phytochemical ref="PC003"/>
+        </Phytochemicals>
+    </Plant>
+
+    <PhytochemicalLibrary>
+
+        <Phytochemical id="PC001">
+            <Name>Allicin</Name>
+            <CAS>539-86-6</CAS>
+            <Activity>Anti-inflammatory</Activity>
+
+            <Reference>
+                <DOI>10.1000/allicin001</DOI>
+                <Year>2024</Year>
+            </Reference>
+
+        </Phytochemical>
+
+        <Phytochemical id="PC002">
+            <Name>Quercetin</Name>
+            <CAS>117-39-5</CAS>
+            <Activity>Antioxidant</Activity>
+
+            <Reference>
+                <DOI>10.1000/quercetin001</DOI>
+                <Year>2023</Year>
+            </Reference>
+
+        </Phytochemical>
+
+        <Phytochemical id="PC003">
+            <Name>Gingerol</Name>
+            <CAS>23513-14-6</CAS>
+            <Activity>Anti-inflammatory</Activity>
+
+            <Reference>
+                <DOI>10.1000/gingerol001</DOI>
+                <Year>2022</Year>
+            </Reference>
+
+        </Phytochemical>
+
+    </PhytochemicalLibrary>
+
+</MedicinalPlants>
