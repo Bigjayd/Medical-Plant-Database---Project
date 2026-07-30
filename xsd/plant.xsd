@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <!-- Documentation -->
+    <xs:annotation>
+        <xs:documentation>
+            XML Schema for Medicinal Plant Database
+        </xs:documentation>
+    </xs:annotation>
+
+    <!-- Therapeutic Activity -->
+    <xs:simpleType name="ActivityType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Anti-inflammatory"/>
+            <xs:enumeration value="Antioxidant"/>
+            <xs:enumeration value="Antibacterial"/>
+            <xs:enumeration value="Antiviral"/>
+            <xs:enumeration value="Antifungal"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- Reference -->
+    <xs:complexType name="ReferenceType">
+        <xs:sequence>
+            <xs:element name="DOI" type="xs:string"/>
+            <xs:element name="Year" type="xs:gYear"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Phytochemical -->
+    <xs:complexType name="PhytochemicalType">
+        <xs:sequence>
+            <xs:element name="Name" type="xs:string"/>
+            <xs:element name="CAS" type="xs:string"/>
+            <xs:element name="Activity" type="ActivityType"/>
+            <xs:element name="Reference" type="ReferenceType"/>
+        </xs:sequence>
+
+        <xs:attribute name="id"
+                      type="xs:ID"
+                      use="required"/>
+    </xs:complexType>
+
+    <!-- Plant -->
+    <xs:complexType name="PlantType">
+        <xs:sequence>
+
+            <xs:element name="Name" type="xs:string"/>
+
+            <xs:element name="Family" type="xs:string"/>
+
+            <xs:element name="Origin" type="xs:string"/>
+
+            <xs:element name="Phytochemicals">
+
+                <xs:complexType>
+
+                    <xs:sequence>
+
+                        <xs:element name="Phytochemical"
+                                    maxOccurs="unbounded">
+
+                            <xs:complexType>
+
+                                <xs:attribute name="ref"
+                                              type="xs:IDREF"
+                                              use="required"/>
+
+                            </xs:complexType>
+
+                        </xs:element>
+
+                    </xs:sequence>
+
+                </xs:complexType>
+
+            </xs:element>
+
+        </xs:sequence>
+
+        <xs:attribute name="id"
+                      type="xs:ID"
+                      use="required"/>
+
+    </xs:complexType>
+
+    <!-- Root -->
+    <xs:element name="MedicinalPlants">
+
+        <xs:complexType>
+
+            <xs:sequence>
+
+                <xs:element name="Plant"
+                            type="PlantType"
+                            maxOccurs="unbounded"/>
+
+                <xs:element name="PhytochemicalLibrary">
+
+                    <xs:complexType>
+
+                        <xs:sequence>
+
+                            <xs:element name="Phytochemical"
+                                        type="PhytochemicalType"
+                                        maxOccurs="unbounded"/>
+
+                        </xs:sequence>
+
+                    </xs:complexType>
+
+                </xs:element>
+
+            </xs:sequence>
+
+        </xs:complexType>
+
+        <!-- xs:key -->
+        <xs:key name="ChemicalKey">
+            <xs:selector xpath="PhytochemicalLibrary/Phytochemical"/>
+            <xs:field xpath="@id"/>
+        </xs:key>
+
+        <!-- xs:keyref -->
+        <xs:keyref name="ChemicalReference"
+                   refer="ChemicalKey">
+
+            <xs:selector xpath="Plant/Phytochemicals/Phytochemical"/>
+
+            <xs:field xpath="@ref"/>
+
+        </xs:keyref>
+
+    </xs:element>
+
+</xs:schema>

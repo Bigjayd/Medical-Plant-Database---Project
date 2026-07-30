@@ -1,0 +1,12 @@
+(: Count plants containing an Anti-inflammatory phytochemical :)
+count(//Plant[Phytochemicals/Phytochemical/@ref =
+    //Phytochemical[Activity='Anti-inflammatory']/@id])
+
+(: Plants with more than one phytochemical :)
+count(//Plant[count(Phytochemicals/Phytochemical) > 1])
+
+(: List all plant names :)
+//Plant/Name
+
+(: List all Anti-inflammatory phytochemicals :)
+//Phytochemical[Activity='Anti-inflammatory']/Name
