@@ -1,0 +1,8 @@
+pandas==3.0.5
+numpy==2.5.1
+matplotlib
+seaborn==0.13.2
+lxml==6.1.1
+pathlib
+networkx==3.6.1
+scipy==1.18.0
